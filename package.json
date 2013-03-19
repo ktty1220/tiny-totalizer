@@ -1,0 +1,26 @@
+{
+  "name": "tiny-totalizer",
+  "version": "0.1.0",
+  "description": "Simple and tiny totalisation module using hash",
+  "main": "index.js",
+  "scripts": {
+    "test": "vows --spec test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ktty1220/tiny-totalizer.git"
+  },
+  "keywords": [
+    "total",
+    "totalisation"
+  ],
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "author": {
+    "name": "ktty1220",
+    "email": "ktty1220@gmail.com"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
