@@ -2,7 +2,7 @@ vows = require 'vows'
 assert = require 'assert'
 TinyTotalizer = require '../lib/tiny-totalizer'
 
-vows.describe('core test')
+vows.describe('tt test')
 .addBatch
   'コンストラクタ: 引数なし':
     topic: () -> new TinyTotalizer()
@@ -99,6 +99,26 @@ vows.describe('core test')
       tt.add 'AAA'
     'addの戻り値はセットしたキーのカウント数': (topic) =>
       assert.equal topic, 2
+.addBatch
+  'コンストラクタ: calcReturnIsKey: false':
+    topic: () ->
+      tt = new TinyTotalizer
+        fuzzyLevel: 1
+        calcReturnIsKey: false
+      tt.add 'aaa'
+      tt.add 'AAA'
+    'addの戻り値はセットしたキーのカウント数': (topic) =>
+      assert.equal topic, 2
+.addBatch
+  'コンストラクタ: calcReturnIsKey: true':
+    topic: () ->
+      tt = new TinyTotalizer
+        fuzzyLevel: 1
+        calcReturnIsKey: true
+      tt.add 'aaa'
+      tt.add 'AAA'
+    'addの戻り値はセットしたキーの統一後のキー名': (topic) =>
+      assert.equal topic, 'aaa'
 .addBatch
   'add: 正常な値':
     topic: () ->
