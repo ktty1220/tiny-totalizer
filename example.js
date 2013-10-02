@@ -32,6 +32,7 @@ console.log('### ranking 1\n', tt1.ranking({
 
 var tt2 = new TinyTotalizer({
   allowMinus: true,             // 0未満になる
+  calcReturnIsKey: true,        // add/subの戻り値をキー名にする
   standardizer: function (s) {  // キー統一関数を指定
     // 空白とハイフン、アンダーバーを除去する
     return s.toLowerCase().replace(/[\s\-_]/g, '');
@@ -41,7 +42,7 @@ var tt2 = new TinyTotalizer({
 });
 
 tt2.sub('coffeescript');  // 'coffeescript'を新規に追加(allowMinusがtrueなので-1が入る)
-tt2.add('coffee-script'); // 曖昧さ統一レベルが3なので'coffeescript'に +1
+console.log(tt2.add('coffee-script')); // 曖昧さ統一レベルが3なので'coffeescript'に +1、その'coffeescript'が返る
 tt2.add('shell_script');  // 曖昧さ統一レベルが3なので'shellscript'に +1 
 
 // 集計結果出力(昇順)

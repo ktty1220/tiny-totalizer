@@ -2,7 +2,7 @@ vows = require 'vows'
 assert = require 'assert'
 TinyTotalizer = require '../lib/tiny-totalizer'
 
-vows.describe('tt test')
+vows.describe('core test')
 .addBatch
   'コンストラクタ: 引数なし':
     topic: () -> new TinyTotalizer()
@@ -90,6 +90,15 @@ vows.describe('tt test')
     'standardizerで指定した関数でキーの統一化がされる': (topic) =>
       assert.deepEqual topic.hash,
         aaa: 4
+.addBatch
+  'コンストラクタ: calcReturnIsKey無指定':
+    topic: () ->
+      tt = new TinyTotalizer
+        fuzzyLevel: 1
+      tt.add 'aaa'
+      tt.add 'AAA'
+    'addの戻り値はセットしたキーのカウント数': (topic) =>
+      assert.equal topic, 2
 .addBatch
   'add: 正常な値':
     topic: () ->

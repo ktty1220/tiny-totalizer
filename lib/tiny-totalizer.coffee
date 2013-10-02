@@ -9,6 +9,7 @@ class TinyTotalizer
   constructor: (@opt = {}, @hash = {}) ->
     @opt.allowMinus ?= true
     @opt.fuzzyLevel ?= 0
+    @opt.calcReturnIsKey ?= false
     if @opt.standardizer instanceof Function
       @opt.fuzzyLevel = _standardize.length
       _standardize.push @opt.standardizer
@@ -34,7 +35,7 @@ class TinyTotalizer
     @hash[mKey] ?= 0
     @hash[mKey] += n
     @hash[mKey] = 0 if @hash[mKey] < 0 and not @opt.allowMinus
-    @hash[mKey]
+    if @opt.calcReturnIsKey then mKey else @hash[mKey]
 
   _fixNumber = (n) ->
     return n if typeof n is 'number'
